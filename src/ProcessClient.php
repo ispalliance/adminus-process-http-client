@@ -30,6 +30,30 @@ final class ProcessClient extends BaseClient
 
 
 	/**
+	 * Returns information about server
+	 *
+	 * @param $processId
+	 * @param array $forms assoc array with formId mapped to assoc array with property and value
+	 *
+	 * @return TaskResponse
+	 */
+	public function startProcess($processId, $forms = [])
+	{
+
+		$data = [
+			"item" => [
+				"processInstance" => ["id" => $processId],
+				"hash" => uniqid(),
+			],
+			"forms" => $forms
+		];
+		$response = $this->sendRequest(self::POST, "/task-repository", $data);
+
+		return TaskResponse::from($response);
+	}
+
+
+	/**
 	 * Fill in form
 	 *
 	 * @param int $taskId Task id is usually sent by callback
