@@ -5,8 +5,10 @@ namespace AdminusProcess\HttpClient;
 use AdminusProcess\HttpClient\Exception\InvalidArgumentException;
 use AdminusProcess\HttpClient\Exception\RuntimeException;
 use AdminusProcess\HttpClient\Response\PingResponse;
+use AdminusProcess\HttpClient\Response\TaskListResponse;
 use AdminusProcess\HttpClient\Response\TaskResponse;
 use AdminusProcess\HttpClient\Response\VariableResponse;
+use TaskQueryRequest;
 
 /**
  * Class for connecting to projectus
@@ -50,6 +52,22 @@ final class ProcessClient extends BaseClient
 		$response = $this->sendRequest(self::POST, "/task-repository", $data);
 
 		return TaskResponse::from($response);
+	}
+
+
+	/**
+	 * Returns information about server
+	 *
+	 * @param $query
+	 *
+	 * @return TaskListResponse
+	 *
+	 */
+	public function findTaskByQuery(TaskQueryRequest $query)
+	{
+		$response = $this->sendRequest(self::POST, "/task-repository/query-request", $query->getData());
+
+		return TaskListResponse::from($response);
 	}
 
 
