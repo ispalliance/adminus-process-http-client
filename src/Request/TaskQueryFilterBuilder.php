@@ -136,4 +136,10 @@ class TaskQueryFilterBuilder
 			throw new InvalidArgumentException("Operator $operator not supported for $name");
 		}
 	}
+
+
+	public function getFilter()
+	{
+		return $this->filter;
+	}
 }

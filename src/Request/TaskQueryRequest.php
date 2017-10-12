@@ -4,6 +4,7 @@ use AdminusProcess\HttpClient\Exception\InvalidArgumentException;
 
 class TaskQueryRequest extends BaseRequest
 {
+	/** @var TaskQueryFilterBuilder[] */
 	private $filters = [];
 
 
@@ -59,6 +60,9 @@ class TaskQueryRequest extends BaseRequest
 
 	public function getData()
 	{
-		return $this->filters;
+		$data = [];
+		foreach ($this->filters as $filter) {
+			$data[] = $filter->getFilter();
+		}
 	}
 }
