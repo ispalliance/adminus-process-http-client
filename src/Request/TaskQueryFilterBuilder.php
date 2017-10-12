@@ -1,5 +1,9 @@
 <?php
 
+namespace AdminusProcess\HttpClient\Request;
+
+use AdminusProcess\HttpClient\Exception\InvalidArgumentException;
+
 /**
  *
  * Helper class for TaskQueryRequest do not use directly
@@ -31,7 +35,7 @@ class TaskQueryFilterBuilder
 	 */
 	public function __construct($type = null, TaskQueryRequest $taskQueryRequest)
 	{
-		if (!in_array($type, ["OR", "AND"])) {
+		if (!in_array($type, ["OR", "AND", null])) {
 			throw new InvalidArgumentException("Supported type as AND, OR");
 		}
 		$this->filter["type"] = $type;

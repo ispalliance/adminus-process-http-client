@@ -3,8 +3,7 @@
 require __DIR__ . "/../vendor/autoload.php";
 
 use AdminusProcess\HttpClient\ProcessClientFactory;
-
-$taskId = 426; // Task id from callback or ui
+use AdminusProcess\HttpClient\Request\TaskQueryRequest;
 
 try {
 	//Create client send request

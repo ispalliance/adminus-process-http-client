@@ -1,5 +1,7 @@
 <?php
 
+namespace AdminusProcess\HttpClient\Request;
+
 use AdminusProcess\HttpClient\Exception\InvalidArgumentException;
 
 class TaskQueryRequest extends BaseRequest
@@ -25,7 +27,7 @@ class TaskQueryRequest extends BaseRequest
 			throw new InvalidArgumentException("Use andFilter or orFilter method you already have filter inplace");
 		}
 
-		$filter = new TaskQueryFilterBuilder();
+		$filter = new TaskQueryFilterBuilder(null, $this);
 		$this->filters[] = $filter;
 
 		return $filter;
@@ -38,7 +40,7 @@ class TaskQueryRequest extends BaseRequest
 			throw new InvalidArgumentException("Use filter method at first place");
 		}
 
-		$filter = new TaskQueryFilterBuilder("and");
+		$filter = new TaskQueryFilterBuilder("AND", $this);
 		$this->filters[] = $filter;
 
 		return $filter;
@@ -51,7 +53,7 @@ class TaskQueryRequest extends BaseRequest
 			throw new InvalidArgumentException("Use filter method at first place");
 		}
 
-		$filter = new TaskQueryFilterBuilder("or");
+		$filter = new TaskQueryFilterBuilder("OR", $this);
 		$this->filters[] = $filter;
 
 		return $filter;
@@ -64,5 +66,6 @@ class TaskQueryRequest extends BaseRequest
 		foreach ($this->filters as $filter) {
 			$data[] = $filter->getFilter();
 		}
+		return $data;
 	}
 }

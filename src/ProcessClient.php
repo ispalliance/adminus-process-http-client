@@ -4,11 +4,11 @@ namespace AdminusProcess\HttpClient;
 
 use AdminusProcess\HttpClient\Exception\InvalidArgumentException;
 use AdminusProcess\HttpClient\Exception\RuntimeException;
+use AdminusProcess\HttpClient\Request\TaskQueryRequest;
 use AdminusProcess\HttpClient\Response\PingResponse;
 use AdminusProcess\HttpClient\Response\TaskListResponse;
 use AdminusProcess\HttpClient\Response\TaskResponse;
 use AdminusProcess\HttpClient\Response\VariableResponse;
-use TaskQueryRequest;
 
 /**
  * Class for connecting to projectus

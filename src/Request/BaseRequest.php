@@ -1,5 +1,7 @@
 <?php
 
+namespace AdminusProcess\HttpClient\Request;
+
 class BaseRequest
 {
 	/**
