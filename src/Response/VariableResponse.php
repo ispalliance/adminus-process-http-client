@@ -2,7 +2,7 @@
 
 namespace AdminusProcess\HttpClient\Response;
 
-class VariableResponse extends BaseResponse
+class VariableResponse extends ProcessBaseResponse
 {
 	public function isSuccess()
 	{

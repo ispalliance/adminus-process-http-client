@@ -10,7 +10,6 @@ $formId = 2; //Form id you can see it in the ui
 try {
 	//Create client send request
 	$client = ProcessClientFactory::create("http://projectus.dev/", "root", "pass");
-	$client->checkConnection();
 	$response = $client->fillForm($taskId, $formId, ["schvaleni" => "ano"]);
 
 	//Handle response

@@ -3,9 +3,7 @@
 namespace AdminusProcess\HttpClient;
 
 use AdminusProcess\HttpClient\Exception\InvalidArgumentException;
-use AdminusProcess\HttpClient\Exception\RuntimeException;
 use AdminusProcess\HttpClient\Request\TaskQueryRequest;
-use AdminusProcess\HttpClient\Response\PingResponse;
 use AdminusProcess\HttpClient\Response\TaskListResponse;
 use AdminusProcess\HttpClient\Response\TaskResponse;
 use AdminusProcess\HttpClient\Response\VariableResponse;
@@ -15,22 +13,6 @@ use AdminusProcess\HttpClient\Response\VariableResponse;
  */
 final class ProcessClient extends BaseClient
 {
-	const SUPPORTED_VERSION = ["v1"];
-
-
-	/**
-	 * Returns information about server
-	 *
-	 * @return PingResponse
-	 */
-	public function ping()
-	{
-		$response = $this->sendRequest(self::GET, "/ping");
-
-		return PingResponse::from($response);
-	}
-
-
 	/**
 	 * Returns information about server
 	 *
@@ -131,20 +113,5 @@ final class ProcessClient extends BaseClient
 		$response = $this->sendRequest(self::GET, "/task-repository/query/?query={$query}");
 
 		return VariableResponse::from($response);
-	}
-
-
-	public function checkConnection()
-	{
-		$response = $this->ping();
-		if (!$response->isSuccess()) {
-			throw new RuntimeException("Cannot connect to server");
-		}
-		if ($response->getApiName() !== "projectus") {
-			throw new RuntimeException("The url is not adminus process api endpoint");
-		}
-		if (!in_array($response->getApiVersion(), self::SUPPORTED_VERSION)) {
-			throw new RuntimeException("Unsupported api version: " . $response->getApplicationVersion());
-		}
 	}
 }

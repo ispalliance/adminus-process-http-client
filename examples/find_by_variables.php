@@ -8,7 +8,6 @@ use AdminusProcess\HttpClient\Request\TaskQueryRequest;
 try {
 	//Create client send request
 	$client = ProcessClientFactory::create("http://projectus.dev/", "root", "pass");
-	$client->checkConnection();
 
 	//Create request with variable quuery
 	$query = new TaskQueryRequest();

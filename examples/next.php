@@ -9,7 +9,6 @@ $taskId = 426; // Task id from callback or ui
 try {
 	//Create client send request
 	$client = ProcessClientFactory::create("http://projectus.dev/", "root", "pass");
-	$client->checkConnection();
 	$response = $client->next($taskId);
 
 	//Handle response

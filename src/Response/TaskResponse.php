@@ -2,7 +2,7 @@
 
 namespace AdminusProcess\HttpClient\Response;
 
-class TaskResponse extends BaseResponse
+class TaskResponse extends ProcessBaseResponse
 {
 	public function getTask()
 	{

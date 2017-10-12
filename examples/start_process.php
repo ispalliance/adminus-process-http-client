@@ -9,7 +9,6 @@ $processId = 16;
 try {
 	//Create client send request
 	$client = ProcessClientFactory::create("http://projectus.dev/", "root", "pass");
-	$client->checkConnection();
 	$response = $client->startProcess($processId);
 
 	//Handle response
