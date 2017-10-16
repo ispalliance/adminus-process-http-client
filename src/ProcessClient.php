@@ -123,6 +123,6 @@ final class ProcessClient extends BaseClient
 	 */
 	public function getUrlTranslator()
 	{
-		return new UrlTranslator($this->config->getBaseUrl());
+		return new UrlTranslator($this->config->getWebBaseUrl());
 	}
 }

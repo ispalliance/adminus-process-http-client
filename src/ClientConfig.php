@@ -42,6 +42,12 @@ class ClientConfig
 	}
 
 
+	public function getWebBaseUrl()
+	{
+		return $this->url . "/projectus";
+	}
+
+
 	/**
 	 * @return string
 	 */
