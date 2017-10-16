@@ -12,8 +12,8 @@ abstract class BaseClient
 	const POST = "POST";
 	const DELETE = "POST";
 	const PUT = "PUT";
-	private $config;
-	private $client;
+	protected $config;
+	protected $client;
 
 
 	/**

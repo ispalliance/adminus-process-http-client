@@ -114,4 +114,15 @@ final class ProcessClient extends BaseClient
 
 		return VariableResponse::from($response);
 	}
+
+
+	/**
+	 * Creature url translator for current projectus instance
+	 *
+	 * @return UrlTranslator
+	 */
+	public function getUrlTranslator()
+	{
+		return new UrlTranslator($this->config->getBaseUrl());
+	}
 }
