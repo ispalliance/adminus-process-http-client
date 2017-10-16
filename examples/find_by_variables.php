@@ -11,17 +11,16 @@ try {
 
 	//Create request with variable quuery
 	$query = new TaskQueryRequest();
-	$query
-		->filter()->variable("customer_id")->equal(14)
-		->andFilter()->variable("task_creator")->equal("adminus");
+	$query->filter()->variable("typ_faktury")->equal('zbozi');
 
 	$response = $client->findTaskByQuery($query);
 
 	//Handle response
 	if ($response->isSuccess()) {
-		echo "Following tasks are listed: \n";
-		echo $response->getTasks()['id'] . "\n";
-		echo $response->getTasks()['name'] . "\n";
+		foreach ($response->getTasks() as $task) {
+			echo "Following tasks are listed: \n";
+			echo "{$task['id']}-{$task['name']} \n";
+		}
 	}
 	else {
 		echo "{$response->getStatusCode()}:{$response->getMessage()}\n";
