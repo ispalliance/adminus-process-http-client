@@ -50,9 +50,6 @@ abstract class BaseClient
 		catch (ServerException $ex) {
 			$response = $ex->getResponse();
 		}
-		catch (\Exception $ex) {
-			$response = null;
-		}
 
 		return $response;
 	}

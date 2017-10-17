@@ -18,7 +18,7 @@ abstract class BaseResponse
 	 *
 	 * @param null|ResponseInterface $psr7Response
 	 */
-	protected function __construct(ResponseInterface $psr7Response)
+	protected function __construct(ResponseInterface $psr7Response = null)
 	{
 		$this->psr7Response = $psr7Response;
 	}
@@ -31,7 +31,7 @@ abstract class BaseResponse
 	 *
 	 * @return static
 	 */
-	public static function from(ResponseInterface $psr7Response)
+	public static function from(ResponseInterface $psr7Response = null)
 	{
 		if ($psr7Response === null) {
 			return new NullResponse(null);
