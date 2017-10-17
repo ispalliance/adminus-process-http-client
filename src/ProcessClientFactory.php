@@ -17,7 +17,9 @@ class ProcessClientFactory
 	 */
 	public static function create($url, $user, $password)
 	{
-		$guzzle = new Client();
+		$guzzle = new Client([
+			"verify" => false
+		]);
 		$config = new ClientConfig();
 		$config->setUrl($url);
 		$config->setUser($user);
