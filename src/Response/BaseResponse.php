@@ -93,8 +93,18 @@ abstract class BaseResponse
 
 	public function getMessage()
 	{
-		if (is_array($this->body) && array_key_exists("message", $this->body)) {
-			return $this->body["message"];
+		$code = $this->getStatusCode();
+		if ($code !== 400) {
+			if (is_array($this->body) && array_key_exists("message", $this->body)) {
+				return $this->body["message"];
+			}
+		}
+		else {
+			if (is_array($this->body)
+				&& array_key_exists("data", $this->body)
+				&& array_key_exists("error", $this->body["data"])) {
+				return $this->body["data"]["error"];
+			}
 		}
 
 		return "Cannot parse message from body";

@@ -4,17 +4,17 @@ require __DIR__ . "/../vendor/autoload.php";
 
 use AdminusProcess\HttpClient\ProcessClientFactory;
 
-$processId = 16;
+$processId = 1;
 
 try {
 	//Create client send request
-	$client = ProcessClientFactory::create("http://projectus.dev/", "root", "pass");
+	$client = ProcessClientFactory::create("http://projectus.jrh/", "root", "pass");
 	$response = $client->startProcess($processId);
 
 	//Handle response
 	if ($response->isSuccess()) {
 		echo "Process started: \n";
-		echo "Task ID: ". $response->getTask()['id'] . "\n";
+		echo "Task ID: " . $response->getTask()['id'] . "\n";
 		echo "Task Name" . $response->getTask()['name'] . "\n";
 	}
 	else {
@@ -24,8 +24,10 @@ try {
 			if ($data !== null) {
 				foreach ($data as $formId => $errors) {
 					echo "Form with id $formId:\n";
-					foreach ($errors as $name => $error) {
-						echo "Field '$name': $error";
+					if (is_array($errors)) {
+						foreach ($errors as $name => $error) {
+							echo "Field '$name': $error";
+						}
 					}
 					echo "\n";
 				}
