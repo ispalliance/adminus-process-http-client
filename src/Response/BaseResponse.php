@@ -59,8 +59,7 @@ abstract class BaseResponse
 	{
 		return $this->getStatusCode() === 200
 			&& $this->body !== null
-			&& array_key_exists("data", $this->body)
-			&& array_key_exists("message", $this->body);
+			&& array_key_exists("data", $this->body);
 	}
 
 
