@@ -21,7 +21,7 @@ final class ProcessClient extends BaseClient
 	 *
 	 * @return TaskResponse
 	 */
-	public function startProcess($processId, $forms = [], $startStep = null)
+	public function startProcess($processId, $forms = [], $startStep = null, $sudoMail = null)
 	{
 
 		$data = [
@@ -32,7 +32,12 @@ final class ProcessClient extends BaseClient
 			"startStep" => $startStep,
 			"forms" => $forms
 		];
-		$response = $this->sendRequest(self::POST, "/task-repository", $data);
+
+		$headers = [];
+		if ($sudoMail) {
+			$headers = ["X-SUDO-EMAIL" => $sudoMail];
+		}
+		$response = $this->sendRequest(self::POST, "/task-repository", $data, $headers);
 
 		return TaskResponse::from($response);
 	}

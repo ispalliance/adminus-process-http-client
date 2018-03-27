@@ -29,7 +29,7 @@ abstract class BaseClient
 	}
 
 
-	protected function sendRequest($method, $uri, array $data = [])
+	protected function sendRequest($method, $uri, array $data = [], array $headers = [])
 	{
 		try {
 			$options = [
@@ -37,6 +37,9 @@ abstract class BaseClient
 			];
 			if ($data) {
 				$options["body"] = Utils::jsonEncode($data);
+			}
+			if ($headers) {
+				$options["headers"] = $headers;
 			}
 
 			// Concat url with single slash

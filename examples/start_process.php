@@ -4,13 +4,12 @@ require __DIR__ . "/../vendor/autoload.php";
 
 use AdminusProcess\HttpClient\ProcessClientFactory;
 
-$processId = 3;
+$processId = 8;
 
 try {
 	//Create client send request
-	$client = ProcessClientFactory::create("http://projectus.jrh/", "root", "pass");
-	$response = $client->startProcess($processId, [], "start");
-	$response = $client->startProcess($processId, [2 => ["adminus_customer_id" => "2"]], "step_2");
+	$client = ProcessClientFactory::create("http://master-projectus.jrh/", "root", "pass");
+	$response = $client->startProcess($processId, [], "start", "user@example.com");
 	var_dump($response->getBody());
 	//Handle response
 	if ($response->isSuccess()) {
