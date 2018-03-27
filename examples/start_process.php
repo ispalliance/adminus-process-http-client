@@ -9,7 +9,8 @@ $processId = 3;
 try {
 	//Create client send request
 	$client = ProcessClientFactory::create("http://projectus.jrh/", "root", "pass");
-	$response = $client->startProcess($processId, [2 => ["adminus_customer_id" => "2"]]);
+	$response = $client->startProcess($processId, [], "start");
+	$response = $client->startProcess($processId, [2 => ["adminus_customer_id" => "2"]], "step_2");
 	var_dump($response->getBody());
 	//Handle response
 	if ($response->isSuccess()) {

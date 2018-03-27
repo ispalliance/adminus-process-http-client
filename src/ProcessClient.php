@@ -21,7 +21,7 @@ final class ProcessClient extends BaseClient
 	 *
 	 * @return TaskResponse
 	 */
-	public function startProcess($processId, $forms = [])
+	public function startProcess($processId, $forms = [], $startStep = null)
 	{
 
 		$data = [
@@ -29,6 +29,7 @@ final class ProcessClient extends BaseClient
 				"processInstance" => ["id" => $processId],
 				"hash" => uniqid(),
 			],
+			"startStep" => $startStep,
 			"forms" => $forms
 		];
 		$response = $this->sendRequest(self::POST, "/task-repository", $data);
